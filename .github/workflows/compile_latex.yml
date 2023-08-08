@@ -1,0 +1,15 @@
+on: [push]
+jobs:
+  compile_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            latexmk -pdf -bibtex -shell-escape example.tex
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: example.pdf

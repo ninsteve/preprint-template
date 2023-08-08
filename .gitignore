@@ -1,0 +1,25 @@
+# TEX aux files #
+#################
+
+*.aux
+*.auxlock
+*.backup
+*.log
+*.bbl
+*.blg
+*.out
+*.bak
+*.nav
+*.snm
+*.vrb
+*.dpth
+*.md5
+*.dep
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Compiled TeX  #
+#################
+
+example.pdf

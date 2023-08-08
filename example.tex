@@ -1,0 +1,546 @@
+\documentclass[%
+  a4paper,
+%  letterpaper,
+%  onecolumn,
+  twocolumn,
+%  hidelinks,
+%  linenumbers,
+  algotwoe,
+%  algopc
+]{preprint}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INDIVIDUAL PACKAGES.                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Proper hyphenation.
+\usepackage[english]{babel}
+
+% Graphical packages.
+\usepackage{graphicx}
+
+% Math packages.
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MAIN DOCUMENT.                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PAPER INFORMATION.                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Preprint Template Title}
+  
+\author[$\ast$]{First Author}
+\affil[$\ast$]{Address of first author.\authorcr
+  \email{f.author@email.com}, \orcid{0000-0000-0000-0000}}
+  
+\author[$\dagger$]{Second Author}
+\affil[$\dagger$]{Address of second author.\authorcr
+  \email{s.author@email.com}, \orcid{0000-0000-0000-0000}}
+  
+\shorttitle{Example short title}
+\shortauthor{F. Author, S. Author}
+\shortdate{}
+\shortinstitute{}
+  
+\keywords{keyword1, keyword2, keyword3}
+
+\msc{MSC1, MSC2, MSC3}
+  
+\abstract{%
+  This preprint template was created by Steffen W. R. Werner for consistent
+  writing of research papers.
+  It yields a suitable default for preprints uploaded to open servers like
+  arXiv and may be used for that purpose.
+  In the following, the use of the template is explained in more details
+  with some example for easy use.
+}
+
+\novelty{Here goes the actual novelty!}
+
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PAPER CONTENT.                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+\section{Introduction}%
+\label{sec:intro}
+
+In the following sections, I give guidelines on the preprint commands
+and options as well as a few examples how to use certain things.
+This should not be seen as a general introduction on
+``How to write papers with \LaTeX''.
+Also, the TeX file corresponding to this document can be used as starting point
+for writing your own paper in the preprint style.
+
+In \Cref{sec:pkgcmd}, the most important points, hidden in the class file, are
+described, where \Cref{subsec:options} contains main options that can be used
+for the template, \Cref{subsec:linkpkg} the link packages used by the 
+class file, \Cref{subsec:linenumbers} infos on optional line numbering and
+\Cref{subsec:meta} the (default) commands for meta information.
+\Cref{sec:export} is a small summary of the necessary files for using the
+preprint template on other machines and \Cref{sec:other} is then used for
+completeness of this file as a minimal example for preprints in this style.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Packages and commands}%
+\label{sec:pkgcmd}
+
+Let's talk here about the options, packages and commands in the template.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Class options}%
+\label{subsec:options}
+
+The following is an overview about supported options for the template that can
+be given to the document class to change its behavior:
+
+\begin{description}
+  \item[a4paper] Activates the default European A4 paper size.
+  \item[letterpaper] Activates the default American US letter paper size.
+  \item[onecolumn] Activates the single column style. \texttt{onecolumn}
+    as option is equivalent to not using \texttt{twocolumn}.
+  \item[twocolumn] Activates the double column style. If not set the 
+    \texttt{onecolumn} style is the default.
+  \item[hidelinks] Turns off the coloring of any link in the paper, i.e., all
+    links are printed in default text color.
+  \item[linenumbers] Activates line numbering in text.
+  \item[algotwoe] Loads the \texttt{algorithm2e} package with preset style
+    options for adding algorithm environments.
+  \item[algops] Loads the \texttt{algorithm} and \texttt{algpseudocode} packages
+    for adding algorithm environments.
+\end{description}
+
+As example, to use the preprint in double column style on A4 paper and with 
+colored links you have to call:
+\begin{verbatim}
+  \documentclass[a4paper,twocolumn]{preprint}
+\end{verbatim}
+at the beginning of the main TeX file.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Links and hyperref packages}%
+\label{subsec:linkpkg}
+
+For links of internal and external kind, the template loads the packages
+\texttt{hyperref}, \texttt{url}, \texttt{doi} and \texttt{cleveref}.
+This allows the use of classical link commands as \textbackslash\texttt{href},
+\textbackslash\texttt{url} and \textbackslash\texttt{doi} if needed and
+their use by bibliography styles.
+For distinction, the external links are colored in green, the internal citation
+links in red and any internal reference will be given in blue.
+Since the coloring of links would also appear in print versions, there is the
+option for turning off the coloring; see \Cref{subsec:options}.
+
+For internal referencing, the commands from \texttt{cleveref} are recommended.
+The package is preloaded with the \texttt{nameinlink} and \texttt{capitalize} 
+options such that names of environments are also part of the link and start with
+uppercase letters.
+Use \verb|\Cref{...}| for any named environment as sections, figures, 
+algorithms, tables or equations at the beginning of sentences and 
+\verb|\cref{...}| for default equation referencing in the text.
+By this, the environments are automatically put in by their right naming and
+number, e.g., if we want to reference to two sections we use
+\begin{verbatim}
+  \Cref{sec1,sec2}
+\end{verbatim}
+which gives could then give
+\begin{center}
+  \Cref{sec:intro,sec:pkgcmd}
+\end{center}
+automatically, or for example with the range of three sections
+\begin{verbatim}
+  \Cref{sec1,sec2,sec3}
+\end{verbatim}
+to get
+\begin{center}
+  \Cref{sec:intro,sec:pkgcmd,sec:export}.
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Line numbering}%
+\label{subsec:linenumbers}
+
+The line numbering of the text, which is turned on by the class option
+\textbf{\textsf{linenumbers}}, uses the \verb|lineno| package.
+This has by default problems with math environments especially from other
+packages like \verb|amsmath|.
+Therefore, a patch is integrated to automatically fix the line numbering for all
+math environments from plain \LaTeX and the \verb|amsmath| package.
+If you want to use the line numbering with other math environments, you can
+automatically patch those using the
+\begin{verbatim}
+  \patchMATHlinenumbers{...}
+\end{verbatim}
+command for allowing line numbering for your environment, e.g.,
+\begin{verbatim}
+  \patchMATHlinenumbers{align}
+\end{verbatim}
+is used in the class file to patch the \verb|align| environment from
+\verb|amsmath|.
+For other customization of the line numbering, have a look at the package
+documentation of the \verb|lineno| package.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Commands for basic paper information}%
+\label{subsec:meta}
+
+The template allows you to use a bunch of (default) article commands that should
+be used according to this example paper.
+
+\begin{description}
+  \item[\normalfont\textbackslash\texttt{title}\{\ldots\}] Defines the title
+    of the article.
+  \item[\normalfont\textbackslash\texttt{author}{[\ldots]}\{\ldots\}] Defines
+    an author of the paper. The optional argument allows to set a footnote mark
+    as number or symbol (e.g., 1 or \verb|$\ast$|) to associate authors with
+    affiliations. These authors should be given with full first and last names.
+    The order of the authors in the TeX document determines the order of the
+    authors on the paper.
+  \item[\normalfont\textbackslash\texttt{affil}{[\ldots]}\{\ldots\}] Defines
+    affiliation for the authors. The optional argument allows to set a footnote
+    mark as number or symbol (e.g., 1 or \verb|$\ast$|) to associate authors
+    with affiliations. The affiliation should have the following format
+\begin{verbatim}
+  Address.\authorcr
+  \email{...}, \orcid{...}
+\end{verbatim}
+    such that email and ORCID are automatically formatted and linked.
+  \item[\normalfont\textbackslash\texttt{shorttitle}\{\ldots\}] Is the optional
+    running title of the paper printed on all pages starting with 2.
+  \item[\normalfont\textbackslash\texttt{shortauthor}\{\ldots\}] Is the optional
+    running authors of the paper printed on all pages starting with 2.
+    Here, abbreviated first names should be used. For more then
+    3 authors, it's recommended to use the first author abbreviated and followed
+    by an ``et al.'' (without quotation marks).
+  \item[\normalfont\textbackslash\texttt{shortdate}\{\ldots\}] Controls the
+    content of the dates field in the lower right corner. If empty, the
+    compilation date is used in ISO format (yyyy-mm-dd). Hiding the date
+    is also possible by, e.g., using a non-breakable space 
+    \verb|\shortdate{|$\sim$\verb|}|.
+  \item[\normalfont\textbackslash\texttt{shortinstitute}\{\ldots\}] Allows
+    to set an optional institution in brackets behind ``Preprint'' in the lower
+    left corner.
+  \item[\normalfont\textbackslash\texttt{keywords}\{\ldots\}] Comma separated
+    list of keywords. If not set, the bold face \textbf{Keywords:} below the 
+    abstract will not be shown.
+  \item[\normalfont\textbackslash\texttt{msc}\{\ldots\}] Comma separated
+    list of math subject classification identifiers. If not set, the bold face
+    \textbf{Mathematics subject classification:} below the abstract will not be
+    shown.
+    See for example
+    \begin{center}
+      \url{https://zbmath.org/classification/}
+    \end{center}
+    for the list of MSC identifiers.
+  \item[\normalfont\textbackslash\texttt{abstract}\{\ldots\}] Shows the abstract 
+    text. 
+    Note that this is here only a command and not the classical abstract
+    environment.
+\end{description}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Export template for preprint server}%
+\label{sec:export}
+
+To use the preprint on other machines, e.g., to give it to your co-authors or
+for the upload to a preprint server like \emph{arXiv}, the
+\texttt{mypreprint.cls} file needs to be copied wherever needed.
+No further files are required.
+To compile the template, only basic \LaTeX packages given in any
+minimal \emph{TeX Live} or \emph{MiKTeX} installation are needed.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Other \LaTeX{} stuff}%
+\label{sec:other}
+
+Just for the completeness of the template example, here come a few of the usual
+things you see in other journal styles.
+Basically all following points are just reminders of basic \LaTeX for paper
+writing that also works in the preprint class.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Math environments}%
+\label{subsec:math}
+
+For proper referencing of equations, the template loads by default the
+\verb|amsmath| package.
+The rest can be loaded as desired.
+Here, we will just demonstrate to reference equations with the \verb|cleveref|
+package.
+Given those three equations
+\begin{align}
+  \label{eqn:eqn1}
+  x = a + b,\\
+  \label{eqn:eqn2}
+  c = \frac{1}{2 x},\\
+  \label{eqn:eqn3}
+  V = \int\limits_{0}^{\infty} CB \mathrm{d}t.
+\end{align}
+Then \verb|\cref| should be used instead of \verb|\eqref| for referring to
+a single equation~\cref{eqn:eqn1} by
+\begin{verbatim}
+  \cref{eqn:eqn1}
+\end{verbatim}
+to a set of equations~\cref{eqn:eqn1,eqn:eqn3}
+\begin{verbatim}
+  \cref{eqn:eqn1,eqn:eqn3}
+\end{verbatim}
+and to a range of equations~\cref{eqn:eqn1,eqn:eqn2,eqn:eqn3} by
+\begin{verbatim}
+  \cref{eqn:eqn1,eqn,eqn:2,eqn:eqn3}.
+\end{verbatim}
+Do not forget to put an unbreakable space \~{} between the naming and
+\verb|\cref|.
+
+In case you actually need the environment written with the reference number
+use the uppercase \verb|\Cref| as for other environments, e.g.,
+\Cref{eqn:eqn1,eqn:eqn2,eqn:eqn3} is generated by
+\begin{verbatim}
+  \Cref{eqn:eqn1,eqn,eqn:2,eqn:eqn3}.
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Reference lists}%
+\label{subsec:ref}
+
+For the bibliography style it is recommended to use something that supports
+DOIs.
+In this example, the \verb|plainurl| style is used.
+Citations can be done as usual using the \verb|\cite| command.
+The template is preloading the \verb|cite| package with the option
+\verb|noadjust|.
+This allows automatic ordering of references in citation brackets and conversion
+to ranges of references if possible.
+
+Citation of a single reference is then~\cite{ref1} with
+\begin{verbatim}
+  \cite{ref1}
+\end{verbatim}
+for two references in the wrong order~\cite{ref3, ref1}
+\begin{verbatim}
+  \cite{ref3,ref1}
+\end{verbatim}
+and for ranges of references in any order~\cite{ref2, ref1, ref3}
+\begin{verbatim}
+  \cite{ref2,ref1,ref3}
+\end{verbatim}
+
+Remember to adjust the loaded BibTeX file to your needs and do not forget to
+put an unbreakable space \~{} between the naming and \verb|\cite|.
+Additionally, the references are added to the table of contents by
+\begin{verbatim}
+  \addcontentsline{toc}{section}{References}
+\end{verbatim}
+to give proper links in PDF viewers.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Graphics and TikZ}%
+\label{subsec:graphics}
+
+\begin{figure}[t]
+  \centering
+  \resizebox{8cm}{!}{
+  \includegraphics{example-image-a}}
+   
+  \caption{Example figure for template.}
+  \label{fig:example}
+\end{figure}
+
+No special mentioning of fancy graphics or use of TikZ here.
+Just a simple example how an included graphic should look like with the 
+corresponding \verb|cleveref| reference \Cref{fig:example}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tables}%
+\label{subsec:tables}
+
+The same as for figures now with an example table \Cref{tab:example}.
+For demonstration, also an intermediate breaking horizontal line in the content 
+is added.
+Note that table captions should go above the actual table.
+
+\begin{table}[t]
+  \centering
+  \caption{Example table}
+  \label{tab:example}
+  
+  \begin{tabular}{lcr}
+    \hline\noalign{\medskip}
+    & header1 & header2\\
+    \noalign{\smallskip}\hline\noalign{\medskip}
+    row1 & c1 & c2 \\
+    row2 & c3 & c4 \\
+    \noalign{\smallskip}\hline\noalign{\medskip}
+    row3 & c5 & c6 \\
+    \noalign{\medskip}\hline\noalign{\smallskip}
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Algorithms}%
+\label{subsec:algorithms}
+
+This template has two integrated options for adding algorithm environments:
+(i) \texttt{algotwoe} loads the \texttt{algorithm2e} package with style
+options, and (ii) \texttt{algops} loads the \texttt{algorithm} and
+\texttt{algpseudocode} packages.
+The loading of these packages inside the template ensures that the counter
+definitions for referencing with \texttt{cleveref} are correctly defined.
+
+An example for an algorithm environment is given in \Cref{alg:test}.
+By default, the variant using \texttt{algorithm2e} is shown, but an analogous
+version for the other algorithm packages is commented out in the
+\LaTeX{} code.
+Due to the correct loading sequence it is possible to refer to the single
+lines of the algorithm using labels.
+For example in \Cref{alg:test}, we have \Cref{alg:line1} and
+\Cref{alg:line2,alg:line3,alg:line4,alg:line5}.
+
+\begin{algorithm}[t]
+  \SetAlgoHangIndent{1pt}
+  \DontPrintSemicolon
+  \caption{Test algorithm.}
+  \label{alg:test}
+  
+  \KwIn{Some quantities to give to the algorithm.}
+  \KwOut{Computed things.}
+  
+  First computational step.\;
+  \label{alg:line1}
+  
+  \For{cond \label{alg:line2}}{
+    A second step that ends with a formula
+      \begin{equation*}
+        c = a + b.
+      \end{equation*}\vspace{-\baselineskip}\;
+      \label{alg:line3}
+    
+    And a last step where the formula
+      \begin{equation*}
+        x = \sqrt{2}
+      \end{equation*}
+      is in the middle of the sentence.\;
+      \label{alg:line4}
+  } \label{alg:line5}
+\end{algorithm}
+
+%\begin{algorithm}
+%  \caption{Test algorithm.}
+%  \label{alg:test}
+%  
+%  \hspace*{0\baselineskip}\textbf{Input:}~Some quantities to give to the
+%    algorithm.
+%    
+%  \hspace*{0\baselineskip}\textbf{Output:}~Computed things.
+%  
+%  \begin{algorithmic}[1]
+%    \State First computational step.
+%      \label{alg:line1}
+%      
+%    \For{cond}
+%      \State A second step that ends with a formula
+%        \begin{equation*}
+%          c = a + b.
+%        \end{equation*}\vspace{-\baselineskip}\;
+%        \label{alg:line2}
+%        
+%      \State And a last step where the formula
+%        \begin{equation*}
+%          x = \sqrt{2}
+%        \end{equation*}
+%        \hspace{\baselineskip}
+%        is in the middle of the sentence.
+%        \label{alg:line3}
+%    \EndFor
+%  \end{algorithmic}
+%\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Numerical experiment sections}%
+\label{subsec:numexp}
+
+When using numerical experiments in a paper, the reproducibility of the
+results is extremely important.
+Therefore, you need to mention all used hardware and software in the
+introduction of the numerical examples section.
+For even better scientific practice, the source codes or scripts used in the
+computations should become available, e.g., by uploading on Zenodo.
+In this case, a code availability block should be added to the paper.
+An example for such a block can be seen below.
+
+\begin{center}%
+  \setlength{\fboxsep}{5pt}%
+  \fbox{%
+  \begin{minipage}{.92\linewidth}
+    \textbf{Code availability}\newline
+    The source codes and scripts used to compute the results presented in this 
+    paper can be obtained from
+    \begin{center}
+      \href{https://doi.org/?????/????????}%
+        {\texttt{doi:?????/????????}}
+    \end{center}
+    under the ??? license and authored by ???.
+  \end{minipage}}
+\end{center}
+
+A less standing out variant is to incorporate the above block as sentence with
+a reference to the code package.
+This can easily be copied by readers as reference in their works.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% *** ACKNOWLEDGEMENTS ***                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Acknowledgments}%
+\addcontentsline{toc}{section}{Acknowledgments}
+
+Towards the end, there can be an unnumbered section for the acknowledgments,
+stating people and organizations who influenced or funded the work in the paper.
+Note that this section is just created via
+\begin{verbatim}
+\section*{Acknowledgments}%
+\addcontentsline{toc}{section}{Acknowledgments}
+\end{verbatim}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% *** REFERENCES ***                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{plainurl}
+\bibliography{exampleref}
+  
+\end{document}
