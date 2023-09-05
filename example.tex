@@ -4,9 +4,9 @@
 %  onecolumn,
   twocolumn,
 %  hidelinks,
-%  linenumbers,
-  algotwoe,
-%  algopc
+  colorlinks,
+%  monolinks,
+%  linenumbers
 ]{preprint}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,11 +118,10 @@ be given to the document class to change its behavior:
     \texttt{onecolumn} style is the default.
   \item[hidelinks] Turns off the coloring of any link in the paper, i.e., all
     links are printed in default text color.
+  \item[colorlinks] Turns on the coloring of links in the paper such that
+    internal links are blue, external green and reference links are red.
+  \item[monolinks] Changes all links in the paper to be colored in blue.
   \item[linenumbers] Activates line numbering in text.
-  \item[algotwoe] Loads the \texttt{algorithm2e} package with preset style
-    options for adding algorithm environments.
-  \item[algops] Loads the \texttt{algorithm} and \texttt{algpseudocode} packages
-    for adding algorithm environments.
 \end{description}
 
 As example, to use the preprint in double column style on A4 paper and with 
@@ -404,86 +403,6 @@ Note that table captions should go above the actual table.
     \noalign{\medskip}\hline\noalign{\smallskip}
   \end{tabular}
 \end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Algorithms}%
-\label{subsec:algorithms}
-
-This template has two integrated options for adding algorithm environments:
-(i) \texttt{algotwoe} loads the \texttt{algorithm2e} package with style
-options, and (ii) \texttt{algops} loads the \texttt{algorithm} and
-\texttt{algpseudocode} packages.
-The loading of these packages inside the template ensures that the counter
-definitions for referencing with \texttt{cleveref} are correctly defined.
-
-An example for an algorithm environment is given in \Cref{alg:test}.
-By default, the variant using \texttt{algorithm2e} is shown, but an analogous
-version for the other algorithm packages is commented out in the
-\LaTeX{} code.
-Due to the correct loading sequence it is possible to refer to the single
-lines of the algorithm using labels.
-For example in \Cref{alg:test}, we have \Cref{alg:line1} and
-\Cref{alg:line2,alg:line3,alg:line4,alg:line5}.
-
-\begin{algorithm}[t]
-  \SetAlgoHangIndent{1pt}
-  \DontPrintSemicolon
-  \caption{Test algorithm.}
-  \label{alg:test}
-  
-  \KwIn{Some quantities to give to the algorithm.}
-  \KwOut{Computed things.}
-  
-  First computational step.\;
-  \label{alg:line1}
-  
-  \For{cond \label{alg:line2}}{
-    A second step that ends with a formula
-      \begin{equation*}
-        c = a + b.
-      \end{equation*}\vspace{-\baselineskip}\;
-      \label{alg:line3}
-    
-    And a last step where the formula
-      \begin{equation*}
-        x = \sqrt{2}
-      \end{equation*}
-      is in the middle of the sentence.\;
-      \label{alg:line4}
-  } \label{alg:line5}
-\end{algorithm}
-
-%\begin{algorithm}
-%  \caption{Test algorithm.}
-%  \label{alg:test}
-%  
-%  \hspace*{0\baselineskip}\textbf{Input:}~Some quantities to give to the
-%    algorithm.
-%    
-%  \hspace*{0\baselineskip}\textbf{Output:}~Computed things.
-%  
-%  \begin{algorithmic}[1]
-%    \State First computational step.
-%      \label{alg:line1}
-%      
-%    \For{cond}
-%      \State A second step that ends with a formula
-%        \begin{equation*}
-%          c = a + b.
-%        \end{equation*}\vspace{-\baselineskip}\;
-%        \label{alg:line2}
-%        
-%      \State And a last step where the formula
-%        \begin{equation*}
-%          x = \sqrt{2}
-%        \end{equation*}
-%        \hspace{\baselineskip}
-%        is in the middle of the sentence.
-%        \label{alg:line3}
-%    \EndFor
-%  \end{algorithmic}
-%\end{algorithm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

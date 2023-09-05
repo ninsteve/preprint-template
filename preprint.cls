@@ -1,10 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TEMPLATE CLASS FILE.                                                         %
-% Written by Steffen W. R. Werner (version 4.0), 08-08-2023                    %
+% Written by Steffen W. R. Werner (version 4.1), 04-09-2023                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{preprint}[2023/08/08 S. W. R. Werner Preprint Class (v4.0)]
+\ProvidesClass{preprint}[2023/09/04 S. W. R. Werner Preprint Class (v4.1)]
 
 \newif\iftwocolumn\twocolumnfalse
 \DeclareOption{twocolumn}{\twocolumntrue}
@@ -12,14 +12,14 @@
 \newif\ifhidelinks\hidelinksfalse
 \DeclareOption{hidelinks}{\hidelinkstrue}
 
+\newif\ifcolorlinks\colorlinksfalse
+\DeclareOption{colorlinks}{\colorlinkstrue}
+
+\newif\ifmonolinks\monolinksfalse
+\DeclareOption{monolinks}{\monolinkstrue}
+
 \newif\iflinenumbers\linenumbersfalse
 \DeclareOption{linenumbers}{\linenumberstrue}
-
-\newif\ifalgotwoe\algotwoefalse
-\DeclareOption{algotwoe}{\algotwoetrue}
-
-\newif\ifalgopc\algopcfalse
-\DeclareOption{algopc}{\algopctrue}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrartcl}}
 \ProcessOptions\relax
@@ -276,16 +276,6 @@
   \renewcommand\linenumberfont{\sffamily\scriptsize}
 \fi
 
-% Algorithm packages.
-\ifalgotwoe
-  \RequirePackage[linesnumbered, lined, algoruled]{algorithm2e}
-\fi
-
-\ifalgopc
-  \RequirePackage{algorithm}
-  \RequirePackage{algpseudocode}
-\fi
-
 % Link packages.
 \RequirePackage{xcolor}
 
@@ -293,12 +283,13 @@
 \definecolor{linkRed}{HTML}{E41A1C}
 \definecolor{linkGreen}{HTML}{4DAF4A}
 
-\ifhidelinks
+\ifhidelinks%
   \RequirePackage[%
     colorlinks = false,
     hidelinks
   ]{hyperref}
-\else
+\fi
+\ifcolorlinks%
   \RequirePackage[%
     colorlinks = true,
     linkcolor  = linkBlue,
@@ -306,23 +297,35 @@
     urlcolor   = linkGreen
   ]{hyperref}
 \fi
+\ifmonolinks%
+  \RequirePackage[%
+    colorlinks = true,
+    allcolors  = linkBlue
+  ]{hyperref}
+\fi
+
 
 \RequirePackage{url}
 \RequirePackage{doi}
-\RequirePackage[nameinlink, capitalize]{cleveref}
+\PassOptionsToPackage{nameinlink, capitalize}{cleveref}
 
-% Change cleveref equations without eq.
-\crefformat{equation}{\textup{#2(#1)#3}}
-\crefrangeformat{equation}{\textup{#3(#1)#4--#5(#2)#6}}
-\crefmultiformat{equation}{\textup{#2(#1)#3}}{ and \textup{#2(#1)#3}}
-  {, \textup{#2(#1)#3}}{, and \textup{#2(#1)#3}}
-\crefrangemultiformat{equation}{\textup{#3(#1)#4--#5(#2)#6}}%
-  { and \textup{#3(#1)#4--#5(#2)#6}}{, \textup{#3(#1)#4--#5(#2)#6}}
-  {, and \textup{#3(#1)#4--#5(#2)#6}}
-\Crefformat{equation}{\textup{#2Equation~(#1)#3}}
-\Crefrangeformat{equation}{\textup{#3Equations~(#1)#4--#5(#2)#6}}
-\Crefmultiformat{equation}{\textup{#2Equations~(#1)#3}}{ and \textup{#2(#1)#3}}
-  {, \textup{#2(#1)#3}}{, and \textup{#2(#1)#3}}
-\Crefrangemultiformat{equation}{\textup{#3Equations~(#1)#4--#5(#2)#6}}%
-  { and \textup{#3(#1)#4--#5(#2)#6}}{, \textup{#3(#1)#4--#5(#2)#6}}
-  {, and \textup{#3(#1)#4--#5(#2)#6}}
+\AtBeginDocument{
+  \RequirePackage{cleveref}
+
+  % Change cleveref equations without eq.
+  \crefformat{equation}{\textup{#2(#1)#3}}
+  \crefrangeformat{equation}{\textup{#3(#1)#4--#5(#2)#6}}
+  \crefmultiformat{equation}{\textup{#2(#1)#3}}{ and \textup{#2(#1)#3}}
+    {, \textup{#2(#1)#3}}{, and \textup{#2(#1)#3}}
+  \crefrangemultiformat{equation}{\textup{#3(#1)#4--#5(#2)#6}}%
+    { and \textup{#3(#1)#4--#5(#2)#6}}{, \textup{#3(#1)#4--#5(#2)#6}}
+    {, and \textup{#3(#1)#4--#5(#2)#6}}
+  \Crefformat{equation}{\textup{#2Equation~(#1)#3}}
+  \Crefrangeformat{equation}{\textup{#3Equations~(#1)#4--#5(#2)#6}}
+  \Crefmultiformat{equation}{\textup{#2Equations~(#1)#3}}%
+    { and \textup{#2(#1)#3}}
+    {, \textup{#2(#1)#3}}{, and \textup{#2(#1)#3}}
+  \Crefrangemultiformat{equation}{\textup{#3Equations~(#1)#4--#5(#2)#6}}%
+    { and \textup{#3(#1)#4--#5(#2)#6}}{, \textup{#3(#1)#4--#5(#2)#6}}
+    {, and \textup{#3(#1)#4--#5(#2)#6}}
+}
