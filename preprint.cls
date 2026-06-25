@@ -239,7 +239,11 @@
 
 % Geometry of page.
 \ifshowframe
+  \ifdefined\tikzexternalrealjob
+    \RequirePackage[showframe=false]{geometry}
+  \else
     \RequirePackage[showframe=true]{geometry}
+  \fi
 \else
     \RequirePackage{geometry}
 \fi
