@@ -250,31 +250,7 @@
 \usepackage{amsmath}
 
 % Line numbers.
-\RequirePackage[switch]{lineno}
-
-\newcommand*\patchMATHlinenumbers[1]{%
-  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
-  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
-  \renewenvironment{#1}%
-  {\linenomath\csname old#1\endcsname}%
-  {\csname oldend#1\endcsname\endlinenomath}}%
-\iflinenumbers
-  \AtBeginDocument{%
-    \patchMATHlinenumbers{equation}%
-    \patchMATHlinenumbers{equation*}%
-    \patchMATHlinenumbers{align}%
-    \patchMATHlinenumbers{align*}%
-    \patchMATHlinenumbers{flalign}%
-    \patchMATHlinenumbers{flalign*}%
-    \patchMATHlinenumbers{alignat}%
-    \patchMATHlinenumbers{alignat*}%
-    \patchMATHlinenumbers{gather}%
-    \patchMATHlinenumbers{gather*}%
-    \patchMATHlinenumbers{multline}%
-    \patchMATHlinenumbers{multline*}%
-  }
-  \renewcommand\linenumberfont{\sffamily\scriptsize}
-\fi
+\RequirePackage[switch, mathlines]{lineno}
 
 % Link packages.
 \RequirePackage{xcolor}
